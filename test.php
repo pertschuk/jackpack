@@ -1,0 +1,1 @@
+<?php if ($c++ % 2 == 1) { echo "even";} else { echo "odd";} ?>
