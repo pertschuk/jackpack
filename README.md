@@ -1,4 +1,4 @@
-jackpack
+<img src = "http://jackpack.org/jackpacklogo.jpg"> </img>
 ========
 
 Me // I am Jack Pertschuk, 17 years old, a designer and the Online Editor for the Berkeley High Jacket.
