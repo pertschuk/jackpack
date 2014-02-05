@@ -4,14 +4,14 @@
   $public="localhost";
   
   //MySQL Database Config
-  $database = "bhsjacket.com";
-  $user = "bhsjacke";
-  $password = "@Newsprint2014";
-  $db = "bhsjacke_jackpack";
+  $database = "";
+  $user = ";
+  $password = "";
+  $db = "";
   
   //Google Docs Config
-  $guser = "magicwiz92@gmail.com";
-  $gpass = "r1gamortis";
+  $guser = "";
+  $gpass = "";
   $sections = array("Entertainment","News","Features","Online","Sports","Opinion");
 =======
 <?$public=""; // enter 
