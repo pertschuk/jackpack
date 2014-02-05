@@ -1,14 +1,8 @@
 <?php 
 $cur = "Users";
 require "header.php";
-$con= mysqli_connect($database,$user,$password, 'bhsjacke_jackpack');
+//$con= mysqli_connect($database,$user,$password, 'bhsjacke_jackpack');
 
-// Check connection
-if (mysqli_connect_errno())
-  {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
-  
   ?>
 <div class="row">
   <div class="span16">

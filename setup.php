@@ -33,7 +33,7 @@ if (mysqli_connect_errno())
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT,
   `copy_editor` INT,
-  `photographer_is` INT,
+  `photographer_id` INT,
   `issue_id` INT,
   `google_docs` TEXT,
   `state` TEXT,

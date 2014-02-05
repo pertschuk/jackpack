@@ -6,6 +6,11 @@ if (mysqli_connect_errno())
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
+  function getUser ($id) { $u =mysqli_query($con,"SELECT (first,last) FROM Users WHERE pid='$id'");
+  $user = mysqli_fetch_assoc($u);
+  return $user['first'] . " " . $user['last'];
+ 
+  }
   $sql = "SELECT name FROM issues ORDER by PID";
   $res = mysqli_query($con, $sql);
   $row = mysqli_fetch_assoc($res);
