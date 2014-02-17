@@ -3,7 +3,7 @@ $issue = $_GET['issue'];
 ?>
 
 <div class="row"><div class="span16">
-<h1 class="page-header">Issue for <? echo $issue; ?></h1>
+<h1 class="page-header">Issue for <? echo $issues[$issue-1]; ?></h1>
 
  <?//if $latest_issue.id != @issue.id: ?>
 <fieldset>
@@ -23,11 +23,33 @@ $issue = $_GET['issue'];
   </div>
             <div class="clearfix">
     <label for="document[user_id]">Assignment:</label>
-    <div class="input"><select name="id" id="document-user_id" class="alph"> 
- <? if ($result = $con->query("SELECT first,last FROM Users")) {
-    while ($users = $result->fetch_assoc()) { ?><option value ="<? echo $users['id']; ?>"><? echo $users['first'] . " " . $users['last']; ?></option><? } } ?></select>
+    <div class="input"><select name="uid" id="document-user_id" class="alph"> 
+ <? if ($result = $con->query("SELECT pid,first,last FROM Users")) {
+    while ($users = $result->fetch_assoc()) { ?><option value ="<? echo $users['pid']; ?>"><? echo $users['first'] . " " . $users['last']; ?></option><? } } ?></select>
   </div>
         </div>
+            <div class="clearfix">
+    <label for="document[user_id]">Editor:</label>
+    <div class="input"><select name="editor" id="document-user_id" class="alph"> 
+ <? if ($result = $con->query("SELECT pid,first,last FROM Users WHERE role='editor'")) {
+    while ($users = $result->fetch_assoc()) { ?><option value ="<? echo $users['pid']; ?>"><? echo $users['first'] . " " . $users['last']; ?></option><? } } ?></select>
+  </div>
+        </div>
+            <div class="clearfix">
+    <label for="document[contact]">Detailed Description &amp; Contacts:</label>
+    <div class="input"><textarea name="description" id="document-contact" class="xlarge"></textarea></div>
+  </div>
+            <div class="clearfix">
+    <label for="document[visual]">Visual:</label>
+    <div class="input">
+      <ul class="inputs-list "><li><label><input type="radio" name="visual" value="illustration" checked=""><span>Illustration</span></label></li><li><label><input type="radio" name="document[visual]" value="photo"><span>Photo</span></label></li><li><label><input type="radio" name="document[visual]" value="none"><span>None</span></label></li></ul>
+      
+    </div>
+  </div>
+            <div class="clearfix" id="document-state-wrapper">
+    <label for="document[state]">State:</label>
+    <div class="input"><select name="state" id="document-state" class=""><option value="new" selected="selected">Not started</option><option value="progress">In progress</option><option value="editing1">Editing first draft</option><option value="revising">Revising</option><option value="editing2">Editing final draft</option><option value="copy">Copy editing</option><option value="done">Done</option></select></div>
+  </div>
         </div>
     </div>
     <div class="actions">
@@ -48,32 +70,27 @@ $issue = $_GET['issue'];
     <th>Editor</th>
     <th>Writer</th>
     <th>Visual</th>
+    <th>Grade</th>
   </tr>
   </thead>
   <tbody>
       <? if ($result = $con->query("SELECT * FROM document WHERE section='$section' AND issue_id='$issue'")) {
     while ($doc = $result->fetch_assoc()) { ?>
   <tr class="<? if ($c++ % 2 == 1) { echo "even";}  else { echo "odd"; } ?>">
-    <td><a href="/document/<? echo $doc['id']; ?>/edit"><strong><? echo $doc['title']; ?></strong><a></td>
+    <td><a href="/edit?id=<? echo $doc['id']; ?>"><strong><? echo $doc['title']; ?></strong><a></td>
     <td><? echo $doc['contact']; ?></td>  
     <td>
-      <? if ($doc['state'] == 'new'){ 
-          echo $doc['state'];
-      }
-      else { ?>
-        <a href="/document/<%= document.id %>/google"><? echo $doc['state']; ?></a>
-      <? } ?>
+      
+
+        <a href="google.php?id=<? echo $doc['id']; ?>&title=<? echo $doc['title']; ?>&gdoc=<? echo $doc['google_docs']; ?>"><? echo $doc['state']; ?></a>
     </td>
-    <td><? echo $doc['editor_id']; ?></td>
-    <td><strong><? getUser($doc['user_id']); ?></strong><br />
-      <%= document.user.phone %><br />
-      <%= document.user.email %></td>
+    <td><?  echo getUser($doc['editor_id'],$con); ?></td>
+    <td><strong><? echo getUser($doc['user_id'],$con); ?></strong><br /></td>
     <td>
-      <%= @capitalize document.visual %>
-      <% if document.photographer: %>
-        <br /><strong><%= document.photographer.name %></strong>
-      <% end %>
+      <? echo $doc['visual']; ?>
+        <br /><strong></strong>
     </td>
+    <td> <a href ="/grade">Enter Grade</a> </td>
   </tr><? } ?>
   </tbody>
 </table>

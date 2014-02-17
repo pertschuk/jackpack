@@ -6,7 +6,7 @@ if (mysqli_connect_errno())
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
-  function getUser ($id) { $u =mysqli_query($con,"SELECT (first,last) FROM Users WHERE pid='$id'");
+  function getUser ($id, $c) { $u =mysqli_query($c,"SELECT first,last FROM Users WHERE pid='$id'");
   $user = mysqli_fetch_assoc($u);
   return $user['first'] . " " . $user['last'];
  
@@ -43,20 +43,22 @@ if (mysqli_connect_errno())
               <ul class="dropdown-menu">
                 <?php $sql = "SELECT * FROM issues";
                         if ($result = $con->query($sql)) {
-
+                            $issues = array();
                             /* fetch associative array */
                             while ($row = $result->fetch_assoc()) {
+                                array_push($issues,$row['name']);
+                                
                 ?>
                 <li><a href="document.php?issue=<?php echo $row['PID'] ?>"><?php echo $row['name']; ?></a></li>
                 <?php } }?>
                 <?php //if ($_SESSION['role'] == 'editor') ?>
                 <li class="divider"></li>
                 <li>
-                    <form action ="issue.php" method ="post">
-                    <input type ="text" name ="issue[name]" id="issue-name" class ="undefined"/>
-                    <input type ="submit" name ="op" class ="btn" value ='+'/>
-                    </form>
-                </li>  
+                  <form method="post" action="/issue">
+                    <input type="text" name="issue[name]" value="" id="issue-name" class="undefined">
+                    <input type="submit" name="op" value="+" id="issue-+" class="btn">
+               </form>
+                </li>
               </ul>
             </li>
             <li class ="users"><a href="/users">Users</a></li>

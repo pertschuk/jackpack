@@ -26,6 +26,7 @@ try {
           if($row['openid']) {
               $_SESSION['openid'] = $row['openid'];
               $_SESSION['role'] = $row['role'];
+              $_SESSION['email'] = $row['email'];
               $_SESSION['name'] = $row['first'] . " " . $row['last'];
               $_SESSION['uid'] = $row['PID'];
               header('Location: /' );
@@ -39,8 +40,9 @@ try {
               if (!$row['token']) { echo "Invalid token"; die(); }
               $email = $row['email'];
               $role = $row['role'];
-              
+              require 'header.php';
               ?>
+            
             <form action="create.php" method="post">
             <input type="hidden" name="openid" value="<?php echo $openid->identity; ?>">
             <input type="hidden" name="role" value="<?php echo $role; ?>">

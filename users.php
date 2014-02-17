@@ -4,31 +4,16 @@ require "header.php";
 //$con= mysqli_connect($database,$user,$password, 'bhsjacke_jackpack');
 
   ?>
-<div class="row">
-  <div class="span16">
-    <fieldset><legend>Invite</legend>
-      <div class="clearfix">
-        <label for="email">Email:</label>
-        <div class="input">
-          <input type="text" name="email" value="" id="authtoken-email" class="undefined">
-        </div>
-      </div>
-      <div class="clearfix">
-        <label for="role">Role:</label>
-        <div class="input">
-            <select name="authtoken[role]" id="authtoken-role" class="medium">
-                <option value="writer">Writer</option>
-                <option value="photographer">Photographer</option>
-                <option value="editor">Editor</option>
-                <option value="illustrator">Illustrator</option>
+<form action="invite.php" method="post" id ="invite">
+            <div class="clearfix"> Email: <input type="text" name="email"><br></div>
+            <div class="clearfix"> Role : <select name ="role" form ="invite">
+                <option value ="writer">Writer</option>
+                <option value ="editor">Editor</option>
+                <option value ="photographer">Photographer</option>
+                <option value ="illustrator">Illustrator</option>
             </select></div>
-      </div>
-      <div class="actions">
-        <button>Submit</button>
-      </div>
-    </fieldset>
-  </div>
-</div>
+            <div class="actions"><input type="submit" name="op" value="Submit" id="document-submit" class="btn primary"></div>
+</form>
 
 <div class="row">
 <div class="span16">

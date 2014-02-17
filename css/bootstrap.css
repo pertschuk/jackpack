@@ -191,7 +191,7 @@ body {
 }
 .container {
   width: 940px;
-  margin-left: auto;
+  margin-left: 135px;
   margin-right: auto;
   zoom: 1;
 }
@@ -991,7 +991,7 @@ textarea[readonly] {
   text-shadow: 0 1px 0 #ffffff;
   -webkit-border-radius: 3px 0 0 3px;
   -moz-border-radius: 3px 0 0 3px;
-  border-radius: 3px 0 0 3px;
+border-radius: 3px 0 0 3px;
 }
 .input-prepend .active, .input-append .active {
   background: #a9dba9;

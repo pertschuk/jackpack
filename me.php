@@ -14,11 +14,11 @@ require "header.php";
 </head>
 <form action="update.php" method="post">
     <div class ="clearfix"><input type="hidden" name="openid" value="<?php echo $_SESSION['openid']; ?>">
-            <input type="hidden" name="role" value="<?php echo $_SESSION['role']; ?>">
-            First Name: <input type="text" name="first"><br>
-            Last Name: <input type="text" name="last"><br>
-            Cell Phone: <input type="text" name="cell"><br>
-            Email: <input type="text" name="email" value ="<?php //echo $email; ?> "><br>
+            <input type="hidden" name="role" value="<?php echo $_SESSION['role']; $name = explode(' ',$_SESSION['name']); ?>">
+            <div class ="clearfix"><label for='first'>First Name:</label>  <input id='first' type="text" name="first" value ="<? echo $name[0]; ?>"><br></div>
+            <div class ="clearfix"><label for='last'>Last Name:</label>  <input type="text" name="last" value ="<? echo $name[1]; ?>"><br></div>
+            <div class ="clearfix"><label for='cell'>Cell Phone:</label>  <input type="text" name="cell"><br></div>
+            <div class ="clearfix"><label for='email'>Email:</label>  <input type="text" name="email" value ="<?php echo $_SESSION['email']; ?>"><br></div>
             <div class='actions'><input type="submit" name="op" value="Submit" id="user-submit" class="btn primary"></div>
     </div>
     </form>

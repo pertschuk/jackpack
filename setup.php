@@ -29,6 +29,9 @@ if (mysqli_connect_errno())
    PRIMARY KEY(PID), name CHAR(50))";
   mysqli_query($con,$sql);
   
+  $sql = "CREATE TABLE document_sharing(doc INT, user INT )";
+  mysqli_query($con,$sql);
+  
   $sql = "CREATE TABLE `bhsjacke_jackpack`.`document` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT,
