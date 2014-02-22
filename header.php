@@ -22,13 +22,13 @@ if (mysqli_connect_errno())
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JackPack <?php if (isset($cur)){echo $cur;} ?></title>
-      <link rel="stylesheet" href="/css/bootstrap.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
-      <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
-      <script type="text/javascript" charset="utf-8" src="/js/jquery-1.7.1.min.js"></script>
-      <script type="text/javascript" charset="utf-8" src="/js/bootstrap-modal.js"></script>
-      <script type="text/javascript" charset="utf-8" src="/js/bootstrap-dropdown.js"></script>
-      <script type="text/javascript" charset="utf-8" src="/js/bootstrap-alerts.js"></script>
-      <script type="text/javascript" charset="utf-8" src="/js/script.js"></script>
+      <link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+      <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+      <script type="text/javascript" charset="utf-8" src="js/jquery-1.7.1.min.js"></script>
+      <script type="text/javascript" charset="utf-8" src="js/bootstrap-modal.js"></script>
+      <script type="text/javascript" charset="utf-8" src="js/bootstrap-dropdown.js"></script>
+      <script type="text/javascript" charset="utf-8" src="js/bootstrap-alerts.js"></script>
+      <script type="text/javascript" charset="utf-8" src="js/script.js"></script>
     </head>
     <body>
        <div class="topbar" data-scrollspy="scrollspy">
@@ -39,7 +39,7 @@ if (mysqli_connect_errno())
               <li><a href="/">Home</a></li>
             <?php if ($_SESSION['role'] == 'editor'){ ?>
             <li data-dropdown="dropdown" class ="dropdown">
-              <a href="/document.php" class="menu">Assignments</a>
+              <a href="document.php" class="menu">Assignments</a>
               <ul class="dropdown-menu">
                 <?php $sql = "SELECT * FROM issues";
                         if ($result = $con->query($sql)) {
@@ -54,18 +54,18 @@ if (mysqli_connect_errno())
                 <?php //if ($_SESSION['role'] == 'editor') ?>
                 <li class="divider"></li>
                 <li>
-                  <form method="post" action="/issue">
+                  <form method="post" action="issue.php">
                     <input type="text" name="issue[name]" value="" id="issue-name" class="undefined">
-                    <input type="submit" name="op" value="+" id="issue-+" class="btn">
+                    <input type="submit" name="op" value="+" id="issue" class="btn">
                </form>
                 </li>
               </ul>
             </li>
-            <li class ="users"><a href="/users">Users</a></li>
+            <li class ="users"><a href="users.php">Users</a></li>
             <?php } ?>
-            <li class ="me"><a href="/me">My profile</a></li>
-            <li class ="reference"><a href="/reference">Reference</a></li>
-            <li><a href="/logout.php">Logout</a></li>
+            <li class ="me"><a href="me.php">My profile</a></li>
+            <li class ="reference"><a href="reference.php">Reference</a></li>
+            <li><a href="logout.php">Logout</a></li>
           </ul>
         </div>
       </div>

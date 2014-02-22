@@ -1408,7 +1408,7 @@ table .headerSortUp.purple, table .headerSortDown.purple {
   background-color: #222222;*/
   background-repeat: no-repeat;
   background-image: -webkit-linear-gradient(top, #333333, #222222);
-  background-image: url('/img/topbar.png');
+  background-image: url('../img/topbar.png');
   /*background-image: -khtml-gradient(linear, left top, left bottom, from(#333333), to(#222222));
   background-image: -moz-linear-gradient(top, #333333, #222222);
   background-image: -ms-linear-gradient(top, #333333, #222222);
