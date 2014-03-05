@@ -3,33 +3,43 @@ require 'header.php';
 require 'PHPMailerAutoload.php';
 
 function send ($to, $tkn) {
-    $mail = new PHPMailer;
-    $mail->isSMTP();                                      // Set mailer to use SMTP
-    $mail->Host = 'smtp.gmail.com';
-    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'cardigan.bhsjacket@gmail.com';                            // SMTP username
-    $mail->Password = 'OG8cB:;{`kc';                           // SMTP password
-    $mail->SMTPSecure = 'tls';    
-    $mail->Port = 587;
-    $mail->setFrom('cardigan.bhsjacket@gmail.com', 'JackPack');
-    $mail->FromName = 'JackPack';
-    $mail->addAddress($to);   
-    $mail->isHTML(true); 
-    $mail->Subject = 'Join JackPack!';
-    $mail->Body    = "You have been invite to join JackPack, the open source Newsprint management platform. <br/> Please follow <a href='http://localhost?token=" . $tkn . "'>this</a> link to join.";
+                //Create a new PHPMailer instance
+            $mail = new PHPMailer();
+            $mail->isSMTP();
+            $mail->SMTPDebug = 2;
+            //$mail->Debugoutput = 'html';
+            //Set the hostname of the mail server
+            $mail->Host = 'smtp.gmail.com';
+            //Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
+            $mail->Port = 587;
+            //Set the encryption system to use - ssl (deprecated) or tls
+            $mail->SMTPSecure = 'tls';
+            //Whether to use SMTP authentication
+            $mail->SMTPAuth = true;
+            //Username to use for SMTP authentication - use full email address for gmail
+            $mail->Username = "cardigan.bhsjacket@gmail.com";
+            //Password to use for SMTP authentication
+            $mail->Password = "OG8cB:;{`kc";
+            //Set who the message is to be sent from
+            $mail->setFrom('cardigan.bhsjacket@gmail.com', $brand);
+            $mail->setFrom($guser, $brand);
+            $mail->addAddress($to);   
+            $mail->isHTML(true); 
+            $mail->Subject = 'Join ' . $brand;
+            $mail->Body    = "You have been invited to join " . $brand . ", the open source Newsprint management platform. <br/> Please follow <a href='" . $public . "?token=" . $tkn . "'>this</a> link to join.";
 
-    if(!$mail->send()) {
-       echo 'Message could not be sent.';
-       echo 'Mailer Error: ' . $mail->ErrorInfo;
-       return FALSE;
-}
-   else {return TRUE; }
+            if(!$mail->send()) {
+               echo 'Message could not be sent.';
+               echo 'Mailer Error: ' . $mail->ErrorInfo;
+               return FALSE;
+        }
+           else {return TRUE; }
 
 
-}
+        }
 
 
-$con= mysqli_connect($database,$user,$password, 'bhsjacke_jackpack');
+//$con= mysqli_connect($database,$user,$password, 'bhsjacke_jackpack');
 // Check connection
 if (mysqli_connect_errno())
   {

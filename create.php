@@ -20,5 +20,5 @@ if (mysqli_connect_errno())
   
   $sql = "INSERT INTO Users (email, first, last, phone, openid, role) VALUES ('$email', '$first', '$last', '$cell', '$openid', '$role') ";
   mysqli_query($con, $sql);
-  header('Location: /auth.php' );
+  header('Location: auth.php' );
 ?>

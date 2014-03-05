@@ -1,5 +1,5 @@
 <?php
-require '../header.php'
+require 'header.php'
 ?>
 <h1> Reference: </h1>
 
